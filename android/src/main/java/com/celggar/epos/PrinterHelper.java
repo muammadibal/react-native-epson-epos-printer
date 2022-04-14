@@ -363,6 +363,9 @@ public class PrinterHelper implements ReceiveListener {
                         int size = !obj.has("size") ? 187 : obj.get("size").getAsInt();
                         JsonElement jShift = obj.get("shift");
                         int shift = jShift == null ? 20 : jShift.getAsInt();
+                        
+                        int sizeWidth = !obj.has("widthSize") ? 187 : obj.get("widthSize").getAsInt();
+                        int sizeHeight = !obj.has("heightSize") ? 100 : obj.get("heightSize").getAsInt();
 
                         // HRI of barcode, Human Readable Interpretation
                         int HRI = Printer.HRI_NONE;
@@ -438,7 +441,7 @@ public class PrinterHelper implements ReceiveListener {
                             //187, 70
                             FutureTarget<Bitmap> futureBitmap2 = Glide.with(mContext)
                                     .asBitmap()
-                                    .override(width, height)
+                                    .override(sizeWidth, sizeHeight)
                                     .load(value.getAsString())
                                     .submit();
                             try {
