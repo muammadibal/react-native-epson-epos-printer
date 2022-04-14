@@ -313,7 +313,7 @@ public class PrinterHelper implements ReceiveListener {
         }
     }
 
-    String[] mCommands = {"text", "line", "dotted", "image", "barcode", "qrcode", "centered", "left", "right"};
+    String[] mCommands = {"text", "line", "dotted", "image", "imagesize", "barcode", "qrcode", "centered", "left", "right"};
     int mAlignment = -1;
     public void customReceiptData() {
         try {
@@ -433,6 +433,29 @@ public class PrinterHelper implements ReceiveListener {
                                 }
                                 text.append("\n");
                                 break;
+                                
+                            case "imagesize":
+                            //187, 70
+                            FutureTarget<Bitmap> futureBitmap2 = Glide.with(mContext)
+                                    .asBitmap()
+                                    .override(width, height)
+                                    .load(value.getAsString())
+                                    .submit();
+                            try {
+                                Bitmap bitmap = futureBitmap2.get();
+                                mPrinter.addImage(bitmap, 0, 0,
+                                        bitmap.getWidth(),
+                                        bitmap.getHeight(),
+                                        Printer.COLOR_1,
+                                        Printer.MODE_MONO,
+                                        Printer.HALFTONE_DITHER,
+                                        Printer.PARAM_DEFAULT,
+                                        Printer.COMPRESS_AUTO);
+                            } catch (Exception e) {
+                                text.append(e.getMessage());
+                            }
+                            text.append("\n");
+                            break;
 
                             case "barcode":
                                 mPrinter.addBarcode(
