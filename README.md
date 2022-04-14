@@ -108,6 +108,7 @@ Add the res/xml/device_filter.xml in resource file, enter the following code int
 | Key | Type | Description |
 |---|---|---|
 |**`image`**|`url`|link to download the image. Alternatively, the `size` tag can be used to indicate the size of the image, by default the size is 187|
+|**`imagesize`**|`url`|link to download the image. Alternatively, the `widthSize` and `heightSize` tag can be used to indicate the size of the image, by default the width size is 187 and for the height size is 100|
 |**`line`**|`number`|specifies the number of lines to skip. You can also use the text tag with new lines.|
 |**`dotted`**|`number`|specifies the number of centered dotted lines. You can also use the centered tag with "------------------------------".|
 |**`centered`**|`string`|centered text.|
@@ -139,6 +140,13 @@ Add the res/xml/device_filter.xml in resource file, enter the following code int
 |---|---|---|---|
 |**`align`**|`string`|specifies the alignment ("left", "right", "center").|center|
 |**`size`**|`number`|specifies the size of the image (in pixels).|187|
+
+#### imagesize
+| Key | Type | Description | Default |
+|---|---|---|---|
+|**`align`**|`string`|specifies the alignment ("left", "right", "center").|center|
+|**`widthSize`**|`number`|specifies the size of the image (in pixels).|187|
+|**`heightSize`**|`number`|specifies the size of the image (in pixels).|100|
 
 #### barcode
 | Key | Type | Description | Default |
